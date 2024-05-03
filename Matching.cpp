@@ -13,7 +13,6 @@
 
 #include <iostream>
 #include <vector>
-#include <queue>
 using namespace std;
 
 
@@ -21,28 +20,18 @@ class Graph { //класс граф
 private:
 	vector<vector<int>> G;
 
-	bool BFS(int start, vector<int>& matching, vector<int> used) {//алгоритм поиска в ширину возвращает true когда для какой либо из соседних вершин "cur"та								
-		queue<int> q;                                         //еще не найдено наибольшее паросочетание.
-		q.push(start);
-		used[start] = true;
+	bool DFS(int start, vector<int>& matching, vector<int>& used) { //алгоритм поиска в глубину, возвращает тру, если удалось найти дополняющую цепь и фалс - в противном случае.
+		if (used[start]) return false;
 
-		while (!q.empty()) {
-			int cur = q.front();
-			q.pop();
-			for (int to : G[cur]) {
-				if (!used[to]) {
-					if (matching[to] == -1) {
-						matching[to] = cur;
-						return true;
-					}
-					used[to] = true;
-					if (!used[matching[to]]) {
-						q.push(matching[to]);
-					}
-				}
+		used[start] = true;
+		for (int to: G[start]) {
+			if (matching[to] == -1 || DFS(matching[to], matching, used)) {
+				matching[to] = start;
+				return true;
 			}
 		}
 		return false;
+
 	}
 	
 
@@ -57,7 +46,7 @@ public:
 		vector<int> matching(G.size(), -1);//массив паросочетаний, индекс - вершина паросочетания, значение - максимальное паросочетание
 		for (int i = 0; i < G.size(); ++i) {
 			vector<int> used(G.size(), false);
-			BFS(i, matching, used); // запускаем DFS предварительно "обнуляя" вектор used
+			DFS(i, matching, used); // запускаем DFS предварительно "обнуляя" вектор used
 		}
 
 		for (int i = 0; i < G.size(); ++i) {
