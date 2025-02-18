@@ -1,0 +1,5 @@
+﻿  Exam2half.cpp
+C:\Users\ysnxlmted\Desktop\Projects\Exam2half\Exam2half\Exam2half.cpp(26,8): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\ysnxlmted\Desktop\Projects\Exam2half\Exam2half\Exam2half.cpp(41,43): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\ysnxlmted\Desktop\Projects\Exam2half\Exam2half\Exam2half.cpp(45,43): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  Exam2half.vcxproj -> C:\Users\ysnxlmted\Desktop\Projects\Exam2half\x64\Debug\Exam2half.exe
